@@ -1,8 +1,13 @@
 # 09. SoTA Annotation
 
+> **FPF Reference:** Part G (SoTA Kit), особенно G.2 (SoTA-packs) и G.4 (TraditionCards, OperatorCards)
+> Полная спецификация: `~/Github/FPF/FPF-Spec.md`
+
 ## Purpose
 
 Assign and maintain state-of-the-art (SoTA) status for claims, distinctions, and methods. SoTA in SPF is NOT a literature review — it is a **status attribute** that tracks whether understanding is current, outdated, or hypothetical.
+
+**Связь с FPF:** FPF Part G задаёт детальный SoTA Kit с TraditionCards, OperatorCards и selector-ready portfolios. SPF использует упрощённую версию, достаточную для большинства Pack'ов. При необходимости более глубокой работы с SoTA — см. FPF Part G.
 
 ---
 

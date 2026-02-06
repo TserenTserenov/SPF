@@ -37,6 +37,39 @@ Pack            →  spf-personal-pack, spf-ecosystem-pack, ...
 
 ---
 
+## 3.1. Работа с FPF
+
+**Локальный путь:** `~/Github/FPF/FPF-Spec.md` (4.6 MB, ~50000 строк)
+
+**Когда читать FPF при работе с SPF:**
+- При уточнении базовых различений (A.7: Role ≠ Method ≠ Work)
+- При работе с Bounded Context (A.1.1)
+- При проверке корректности процесса (B.4: Evolution Loop, B.5: Reasoning Cycle)
+- При работе с SoTA (FPF Part G: SoTA Kit)
+- При неясности терминологии (FPF Part F: UTS, Bridges)
+
+**Как читать большой файл FPF:**
+1. НЕ читать целиком — файл слишком большой
+2. Сначала оглавление (первые 200 строк) — понять структуру
+3. Искать конкретные паттерны через Grep: `A.7`, `B.5`, `Part G`
+4. Читать только нужную секцию
+
+**Структура FPF (для навигации):**
+
+| Part | Содержание | Когда нужно |
+|------|------------|-------------|
+| **A** | Kernel: Holon, BoundedContext, Role-Method-Work | Базовые различения |
+| **B** | Aggregation (Γ), Trust (F-G-R), Evolution Loop | Процессы, доверие |
+| **C** | Domain extensions: Sys-CAL, KD-CAL, NQD-CAL | Расширения |
+| **D** | Ethics & Conflict | Этика |
+| **E** | Constitution & Authoring | Правила авторства |
+| **F** | Terminology: UTS, Bridges | Терминология |
+| **G** | SoTA Kit | Работа с SoTA |
+
+**Обновление FPF:** `cd ~/Github/FPF && git pull`
+
+---
+
 ## 4. Структура репозитория
 
 ```
@@ -80,14 +113,16 @@ SPF/
 ### 5.2 Запрет предметного содержания в SPF
 **SPF задаёт форму**, не содержание. Содержание — в Pack'ах.
 
-### 5.3 Запрет путаницы типов сущностей
+### 5.3 Запрет путаницы типов сущностей (FPF A.7: Strict Distinction)
 
-| ❌ Путаница | ✅ Различение |
-|------------|--------------|
-| Method = Tool | Метод — способ действия, инструмент — средство |
-| Method = Scenario | Метод — что, сценарий — пошагово как |
-| Work Product = Description | WP — артефакт, description — нарратив |
-| System = Episteme | Система — физическая сущность, эпистема — область знания |
+| ❌ Путаница | ✅ Различение | FPF код |
+|------------|--------------|---------|
+| Method = Tool | Метод — способ действия, инструмент — средство | A.3.1, A.3.2 |
+| Method = Scenario | Метод — что, сценарий — пошагово как | A.3.1 |
+| Work Product = Description | WP — артефакт, description — нарратив | A.7 |
+| System = Episteme | Система — физическая сущность, эпистема — область знания | A.1 |
+| Role = Actor | Роль — функция, актор — исполнитель | A.2 |
+| Object = Description = Carrier | Объект ≠ описание ≠ носитель | A.7 |
 
 ---
 
@@ -119,6 +154,7 @@ SPF/
 | Process overview | `process/00-process-overview.md` | Обзор процесса |
 | Process lint | `process/process-lint.md` | Правила проверки |
 | Downstream contract | `spec/downstream-contract.md` | Контракт с downstream |
+| F-G-R Trust (опц.) | `spec/f-g-r-trust.md` | FPF B.3 — паттерн доверительности |
 | Pack template | `pack-template/` | Каноническая структура Pack |
 
 ---

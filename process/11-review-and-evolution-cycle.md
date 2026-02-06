@@ -1,8 +1,14 @@
 # 11. Review and Evolution Cycle
 
+> **FPF Reference:** B.4 (Canonical Evolution Loop: Run → Observe → Refine → Deploy)
+> Также: B.5 (Reasoning Cycle: Abduction → Deduction → Induction)
+> Полная спецификация: `~/Github/FPF/FPF-Spec.md`
+
 ## Purpose
 
 Establish the ongoing cycle of review and evolution that keeps the pack current. A pack is never "done" — it is a living repository that must be maintained as domain understanding evolves.
+
+**Связь с FPF:** Этот процесс реализует FPF B.4 (Canonical Evolution Loop). Pack проходит циклы: запуск → наблюдение (выявление проблем) → уточнение (изменение) → деплой (публикация). Цикл бесконечен.
 
 ---
 
