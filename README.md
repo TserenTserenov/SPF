@@ -69,10 +69,11 @@ SPF/
 │   ├── downstream-contract.md
 │   ├── f-g-r-trust.md        # FPF B.3 — опциональный паттерн
 │   ├── human-guides.md
-│   └── SPF.SPEC.001-entity-coding.md
+│   ├── SPF.SPEC.001-entity-coding.md
+│   └── SPF.SPEC.002-ontology.md
 └── pack-template/         # Шаблон структуры pack
     ├── 00-pack-manifest.md
-    ├── 01-domain-contract/
+    ├── 01-domain-contract/  # + 01C-ontology.md (SPF.SPEC.002)
     ├── 02-domain-entities/
     ├── 03-methods/
     ├── 04-work-products/
