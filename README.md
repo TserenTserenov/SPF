@@ -69,7 +69,7 @@ SPF/
 │   ├── downstream-contract.md
 │   ├── f-g-r-trust.md        # FPF B.3 — опциональный паттерн
 │   ├── human-guides.md
-│   └── ids-and-references.md
+│   └── SPF.SPEC.001-entity-coding.md
 └── pack-template/         # Шаблон структуры pack
     ├── 00-pack-manifest.md
     ├── 01-domain-contract/
