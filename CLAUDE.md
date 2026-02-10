@@ -89,7 +89,7 @@ SPF/
 │   ├── ai-view.md
 │   ├── downstream-contract.md
 │   ├── human-guides.md
-│   └── ids-and-references.md
+│   └── SPF.SPEC.001-entity-coding.md
 └── pack-template/      # Шаблон структуры Pack
     ├── 00-pack-manifest.md
     ├── 01-domain-contract/
@@ -173,7 +173,7 @@ SPF/
 
 1. Изменения должны быть обратно-совместимы
 2. Если breaking change — требуется миграция Pack'ов
-3. Обнови `spec/ids-and-references.md` если затронуты ID
+3. Обнови `spec/SPF.SPEC.001-entity-coding.md` если затронуты ID
 
 ---
 
