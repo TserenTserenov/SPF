@@ -11,9 +11,18 @@ Copy this file to create a new method card. Replace all `_TBD_` and `DOMAIN.M.XX
 id: DOMAIN.M.XXX
 name: _Method Name_
 status: draft | active | deprecated
+summary: "_One sentence (≤150 chars) describing this method for index and retrieval_"
 sota: current | deprecated-interpretation | hypothesis
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
+related:                                    # Typed relations (SPF.SPEC.003)
+  produces: [DOMAIN.WP.XXX]               # Work products this method produces
+  uses: [DOMAIN.D.XXX]                    # Distinctions/entities it relies on
+  fails_with: [DOMAIN.FM.XXX]             # Associated failure modes
+  requires_role: [DOMAIN.R.XXX]           # Roles needed
+  precedes: []                             # Methods that follow
+  follows: []                              # Methods that precede
+tags: []                                    # Free-form search tags
 ---
 ```
 

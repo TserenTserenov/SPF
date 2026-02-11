@@ -13,8 +13,14 @@ name: _Failure Mode Name_
 category: method-failure | work-product-failure | role-failure | distinction-confusion
 severity: critical | major | minor
 status: draft | active | deprecated
+summary: "_One sentence (≤150 chars) describing this failure mode for index and retrieval_"
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
+related:                                    # Typed relations (SPF.SPEC.003)
+  affects_method: [DOMAIN.M.XXX]           # Methods affected
+  affects_wp: [DOMAIN.WP.XXX]             # Work products affected
+  confused_distinction: [DOMAIN.D.XXX]     # Distinctions confused
+tags: []                                    # Free-form search tags
 ---
 ```
 

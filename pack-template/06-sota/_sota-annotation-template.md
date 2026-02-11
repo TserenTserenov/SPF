@@ -12,8 +12,10 @@ id: DOMAIN.SOTA.XXX
 target_type: method | distinction | claim | work-product
 target_id: DOMAIN.M.XXX (or D.XXX, WP.XXX, etc.)
 status: current | deprecated-interpretation | hypothesis
+summary: "_One sentence (≤150 chars) describing what this SoTA annotation covers_"
 created: YYYY-MM-DD
 last_reviewed: YYYY-MM-DD
+tags: []                                    # Free-form search tags
 ---
 ```
 

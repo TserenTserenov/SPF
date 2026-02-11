@@ -11,8 +11,14 @@ Copy this file to create a new work product card. Replace all `_TBD_` and `DOMAI
 id: DOMAIN.WP.XXX
 name: _Work Product Name_
 status: draft | active | deprecated
+summary: "_One sentence (≤150 chars) describing this work product for index and retrieval_"
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
+related:                                    # Typed relations (SPF.SPEC.003)
+  produced_by: [DOMAIN.M.XXX]             # Methods that produce this WP
+  consumed_by: [DOMAIN.M.YYY]             # Methods that use this WP as input
+  fails_with: [DOMAIN.FM.XXX]             # Associated failure modes
+tags: []                                    # Free-form search tags
 ---
 ```
 
