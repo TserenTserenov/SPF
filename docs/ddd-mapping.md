@@ -10,7 +10,7 @@ updated: 2026-02-10
 > **Цель:** Формализовать знание о том, как методология FPF→SPF→Pack→Downstream соотносится с Domain-Driven Design. Что DDD делает, что отвергает, какие плюсы и минусы у обоих подходов, и как идеи DDD живут в нашей архитектуре.
 >
 > **Краткая версия:** [fpf-spf-pack.md § 14.1](fpf-spf-pack.md)
-> **Downstream:** пост для клуба — [Knowledge-Index-Tseren/posts/2026-02-10-ddd-vs-fpf-spf-pack.md](https://github.com/TserenTserenov/Knowledge-Index-Tseren/blob/main/posts/2026-02-10-ddd-vs-fpf-spf-pack.md)
+> **Downstream:** пост для клуба — [DS-Knowledge-Index-Tseren/posts/2026-02-10-ddd-vs-fpf-spf-pack.md](https://github.com/TserenTserenov/DS-Knowledge-Index-Tseren/blob/main/posts/2026-02-10-ddd-vs-fpf-spf-pack.md)
 
 ---
 
