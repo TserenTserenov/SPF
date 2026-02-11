@@ -89,7 +89,8 @@ SPF/
 │   ├── ai-view.md
 │   ├── downstream-contract.md
 │   ├── human-guides.md
-│   └── SPF.SPEC.001-entity-coding.md
+│   ├── SPF.SPEC.001-entity-coding.md
+│   └── SPF.SPEC.003-pack-scalability.md
 └── pack-template/      # Шаблон структуры Pack
     ├── 00-pack-manifest.md
     ├── 01-domain-contract/
