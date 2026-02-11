@@ -558,7 +558,7 @@ SPF:
 
 ### 11.5. Digital twin
 
-**digital-twin-mcp** выступает как внешний «измерительный контур»:
+**DS-twin** выступает как внешний «измерительный контур»:
 - индикаторы и их типы
 - расчёт производных оценок (например, stage/mastery/agency/risk)
 - при этом генеративные тексты/интерпретации не становятся истиной сами по себе
@@ -649,8 +649,8 @@ Downstream     →  производные представления (курс�
 
 **Связанные репозитории**:
 - [ailev/FPF](https://github.com/ailev/FPF) — First Principles Framework (уровень 1)
-- [TserenTserenov/s2r](https://github.com/TserenTserenov/s2r) — спецификация формата структуры
-- [aisystant/ecosystem-development](https://github.com/aisystant/ecosystem-development) — downstream, использует S2R
+- [TserenTserenov/FMT-S2R](https://github.com/TserenTserenov/FMT-S2R) — спецификация формата структуры
+- [aisystant/DS-ecosystem-development](https://github.com/aisystant/DS-ecosystem-development) — downstream, использует S2R
 
 ### 13.5. Что такое «фреймворк» в этой архитектуре
 

@@ -32,7 +32,7 @@ FPF (Level 1)   →  First Principles Framework (мета-онтология)
        ↓                   ↑ upstream
 SPF (Level 2)   →  ВЫ ЗДЕСЬ (форма + процесс)
        ↓                   ↓ downstream
-Pack            →  spf-personal-pack, spf-ecosystem-pack, ...
+Pack            →  PACK-personal, PACK-ecosystem, ...
 ```
 
 ---
@@ -192,6 +192,6 @@ SPF/
 | Репозиторий | Связь |
 |-------------|-------|
 | ailev/FPF | Upstream — SPF следует FPF |
-| spf-personal-pack | Downstream — Pack следует SPF |
-| spf-ecosystem-pack | Downstream — Pack следует SPF |
-| spf-digital-platform-pack | Downstream — Pack следует SPF |
+| PACK-personal | Downstream — Pack следует SPF |
+| PACK-ecosystem | Downstream — Pack следует SPF |
+| PACK-digital-platform | Downstream — Pack следует SPF |
