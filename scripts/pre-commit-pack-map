@@ -26,11 +26,15 @@ else
     exit 0
 fi
 
-# Find pack directory (pack/*/00-pack-manifest.md)
+# Find pack directory (pack/*/00-pack-manifest.md), skip _template
 PACK_DIR=""
 for manifest in "$REPO_ROOT"/pack/*/00-pack-manifest.md; do
     if [[ -f "$manifest" ]]; then
-        PACK_DIR="$(dirname "$manifest")"
+        dir="$(dirname "$manifest")"
+        dirname_base="$(basename "$dir")"
+        # Skip template directories
+        [[ "$dirname_base" == _* ]] && continue
+        PACK_DIR="$dir"
         break
     fi
 done
@@ -51,24 +55,24 @@ fi
 echo "[auto-MAP] Pack files changed, regenerating MAP..."
 
 # Run generate-map.py
-if ! python3 "$GENERATE_MAP" "$PACK_DIR" 2>&1 | while read -r line; do
+if ! python3 "$GENERATE_MAP" "$PACK_DIR" --manifest 2>&1 | while read -r line; do
     echo "[auto-MAP] $line"
 done; then
     echo "[auto-MAP] Warning: MAP generation failed, committing without update."
     exit 0
 fi
 
-# Stage updated MAP if it changed
-MAP_FILES="$(find "$PACK_DIR/07-map" -name '*.MAP.*.md' 2>/dev/null || true)"
-if [[ -n "$MAP_FILES" ]]; then
-    for map_file in $MAP_FILES; do
-        rel_path="${map_file#$REPO_ROOT/}"
+# Stage updated MAP and manifest if changed
+for pattern in "$PACK_DIR/07-map/*.MAP.*.md" "$PACK_DIR/00-pack-manifest.md"; do
+    for changed_file in $pattern; do
+        [[ -f "$changed_file" ]] || continue
+        rel_path="${changed_file#$REPO_ROOT/}"
         if ! git diff --quiet -- "$rel_path" 2>/dev/null; then
             git add "$rel_path"
             echo "[auto-MAP] Staged updated: $rel_path"
         fi
     done
-fi
+done
 
 echo "[auto-MAP] Done."
 exit 0
