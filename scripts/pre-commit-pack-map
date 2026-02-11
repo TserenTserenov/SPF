@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+#
+# Pre-commit hook: auto-regenerate MAP when Pack entities change.
+#
+# Checks if any .md files under pack/ are staged, runs generate-map.py,
+# and stages the updated MAP file if it changed.
+#
+# Install: symlink this file into each Pack repo's .git/hooks/pre-commit
+#   ln -sf ../../../SPF/scripts/pre-commit-pack-map .git/hooks/pre-commit
+#
+# Requires: python3, pyyaml
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0" 2>/dev/null || echo "$0")")" && pwd)"
+
+# Resolve generate-map.py location
+# Priority: 1) same dir as this script, 2) SPF/scripts/ sibling repo
+if [[ -f "$SCRIPT_DIR/generate-map.py" ]]; then
+    GENERATE_MAP="$SCRIPT_DIR/generate-map.py"
+elif [[ -f "$REPO_ROOT/../SPF/scripts/generate-map.py" ]]; then
+    GENERATE_MAP="$REPO_ROOT/../SPF/scripts/generate-map.py"
+else
+    echo "[auto-MAP] generate-map.py not found, skipping."
+    exit 0
+fi
+
+# Find pack directory (pack/*/00-pack-manifest.md)
+PACK_DIR=""
+for manifest in "$REPO_ROOT"/pack/*/00-pack-manifest.md; do
+    if [[ -f "$manifest" ]]; then
+        PACK_DIR="$(dirname "$manifest")"
+        break
+    fi
+done
+
+if [[ -z "$PACK_DIR" ]]; then
+    # Not a Pack repo or no manifest — skip silently
+    exit 0
+fi
+
+# Check if any pack .md files are staged
+STAGED_PACK_FILES="$(git diff --cached --name-only --diff-filter=ACMR -- 'pack/*.md' 'pack/**/*.md' 2>/dev/null || true)"
+
+if [[ -z "$STAGED_PACK_FILES" ]]; then
+    # No pack files staged — nothing to do
+    exit 0
+fi
+
+echo "[auto-MAP] Pack files changed, regenerating MAP..."
+
+# Run generate-map.py
+if ! python3 "$GENERATE_MAP" "$PACK_DIR" 2>&1 | while read -r line; do
+    echo "[auto-MAP] $line"
+done; then
+    echo "[auto-MAP] Warning: MAP generation failed, committing without update."
+    exit 0
+fi
+
+# Stage updated MAP if it changed
+MAP_FILES="$(find "$PACK_DIR/07-map" -name '*.MAP.*.md' 2>/dev/null || true)"
+if [[ -n "$MAP_FILES" ]]; then
+    for map_file in $MAP_FILES; do
+        rel_path="${map_file#$REPO_ROOT/}"
+        if ! git diff --quiet -- "$rel_path" 2>/dev/null; then
+            git add "$rel_path"
+            echo "[auto-MAP] Staged updated: $rel_path"
+        fi
+    done
+fi
+
+echo "[auto-MAP] Done."
+exit 0
