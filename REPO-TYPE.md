@@ -11,9 +11,9 @@
 ## Downstream outputs
 
 - Все pack-репозитории используют SPF как основу
-- spf-personal-pack
-- spf-ecosystem-pack
-- spf-digital-platform-pack
+- PACK-personal
+- PACK-ecosystem
+- PACK-digital-platform
 
 ## Non-goals
 
