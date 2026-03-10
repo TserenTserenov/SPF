@@ -1,7 +1,7 @@
 # F-G-R Trust Pattern (Optional)
 
 > **FPF Reference:** B.3 (Trust & Assurance Calculus)
-> Полная спецификация: `~/Github/FPF/FPF-Spec.md`
+> Полная спецификация: `~/IWE/FPF/FPF-Spec.md`
 
 ## Overview
 

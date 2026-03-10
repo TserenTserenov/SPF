@@ -2,7 +2,7 @@
 
 > **FPF Reference:** B.4 (Canonical Evolution Loop: Run → Observe → Refine → Deploy)
 > Также: B.5 (Reasoning Cycle: Abduction → Deduction → Induction)
-> Полная спецификация: `~/Github/FPF/FPF-Spec.md`
+> Полная спецификация: `~/IWE/FPF/FPF-Spec.md`
 
 ## Purpose
 

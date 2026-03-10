@@ -1,6 +1,6 @@
 # CLAUDE.md — SPF (Second Principles Framework)
 
-> **Общие инструкции:** см. `/Users/tserentserenov/Github/CLAUDE.md`
+> **Общие инструкции:** см. `/Users/tserentserenov/IWE/CLAUDE.md`
 >
 > Этот файл содержит только специфику данного репозитория.
 
@@ -39,7 +39,7 @@ Pack            →  PACK-personal, PACK-ecosystem, ...
 
 ## 3.1. Работа с FPF
 
-**Локальный путь:** `~/Github/FPF/FPF-Spec.md` (4.6 MB, ~50000 строк)
+**Локальный путь:** `~/IWE/FPF/FPF-Spec.md` (4.6 MB, ~50000 строк)
 
 **Когда читать FPF при работе с SPF:**
 - При уточнении базовых различений (A.7: Role ≠ Method ≠ Work)
@@ -66,7 +66,7 @@ Pack            →  PACK-personal, PACK-ecosystem, ...
 | **F** | Terminology: UTS, Bridges | Терминология |
 | **G** | SoTA Kit | Работа с SoTA |
 
-**Обновление FPF:** `cd ~/Github/FPF && git pull`
+**Обновление FPF:** `cd ~/IWE/FPF && git pull`
 
 ---
 
