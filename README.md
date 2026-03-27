@@ -113,9 +113,8 @@ SPF **универсален по форме и процессу**, но **не 
 | Репозиторий | Тип | Роль |
 |-------------|-----|------|
 | [ailev/FPF](https://github.com/ailev/FPF) | Framework | First Principles Framework (upstream) |
-| [PACK-personal](https://github.com/aisystant/PACK-personal) | Pack | Область созидателя |
-| [PACK-ecosystem](https://github.com/TserenTserenov/PACK-ecosystem) | Pack | Область экосистемы |
 | [PACK-digital-platform](https://github.com/TserenTserenov/PACK-digital-platform) | Pack | Область ИТ-платформы |
+| Pack-репозитории (downstream) | Pack | Создаются по SPF |
 
 ## Как начать создавать pack
 

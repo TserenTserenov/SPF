@@ -10,10 +10,7 @@
 
 ## Downstream outputs
 
-- Все pack-репозитории используют SPF как основу
-- PACK-personal
-- PACK-ecosystem
-- PACK-digital-platform
+- Pack-репозитории используют SPF как основу
 
 ## Non-goals
 
