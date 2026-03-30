@@ -1,267 +1,267 @@
 ---
 id: SPF.SPEC.002
-name: Онтология
+name: Ontology
 status: draft
 created: 2026-02-10
 ---
 
-# Спецификация онтологии
+# Ontology Specification
 
-> Архитектура онтологии: FPF → SPF → Pack → Downstream.
-> Как наследуются понятия, как Pack описывает свою онтологию, кто её изменяет.
+> Ontology architecture: FPF → SPF → Pack → Downstream.
+> How concepts are inherited, how Pack describes its ontology, who changes it.
 
 ---
 
-## 1. Архитектура онтологии
+## 1. Ontology architecture
 
-### 1.1. Четыре уровня
+### 1.1. Four levels
 
 ```
-FPF (мета-онтология)     — универсальные понятия: Система, Метод, Роль, ...
-       ↓ наследует
-SPF (базовая онтология)  — фиксирует FPF-понятия + виды сущностей Pack'а
-       ↓ наследует
-Pack (доменная онтология) — доменные понятия, каждое привязано к SPF-понятию
-       ↓ ссылается
-Downstream               — использует понятия Pack'а, не определяет новых
+FPF (meta-ontology)      — universal concepts: System, Method, Role, ...
+       ↓ inherits
+SPF (base ontology)      — fixes FPF concepts + Pack entity types
+       ↓ inherits
+Pack (domain ontology)   — domain concepts, each linked to an SPF concept
+       ↓ references
+Downstream               — uses Pack concepts, does not define new ones
 ```
 
-### 1.2. Принципы наследования
+### 1.2. Inheritance principles
 
-| Правило | Описание |
-|---------|----------|
-| **SPF ← FPF** | SPF-онтология пополняется **только** из FPF. Никаких доменных понятий |
-| **Pack ← SPF** | Каждое понятие Pack **обязано** иметь родительское понятие из SPF-онтологии |
-| **Downstream ← Pack** | Downstream ссылается на понятия Pack'а. Новые понятия не вводит |
-| **Владелец изменений** | Онтологию на любом уровне изменяет **только Knowledge Extractor** (DP.AISYS.013) |
+| Rule | Description |
+|------|-------------|
+| **SPF ← FPF** | SPF ontology is extended **only** from FPF. No domain concepts |
+| **Pack ← SPF** | Each Pack concept **must** have a parent concept from the SPF ontology |
+| **Downstream ← Pack** | Downstream references Pack concepts. Does not introduce new concepts |
+| **Owner of changes** | The ontology at any level is changed **only by the Knowledge Extractor** (DP.AISYS.013) |
 
-### 1.3. Кто что определяет
+### 1.3. Who defines what
 
-| Уровень | Определяет | Не определяет |
-|---------|-----------|---------------|
-| FPF | Универсальные понятия (U.*) | Доменные понятия |
-| SPF | Фиксирует FPF-понятия + виды сущностей + формат | Доменное содержание |
-| Pack | Доменные понятия с привязкой к SPF | Понятия других доменов |
-| Downstream | Ничего нового | Не определяет, только ссылается |
-
----
-
-## 2. Базовая онтология SPF (наследована из FPF)
-
-> Эти понятия универсальны — одинаковы для всех доменов.
-> Источник: FPF-Spec, Part A (Kernel Architecture Cluster).
-
-### 2.1. Фундаментальные типы
-
-| FPF ID | Понятие | EN | Определение |
-|--------|---------|-----|-------------|
-| U.Entity | Сущность | Entity | Примитив различения — всё, что можно выделить и именовать |
-| U.Holon | Холон | Holon | Единица композиции: целое, состоящее из частей, само являющееся частью |
-| U.System | Система | System | Холон с границей, взаимодействующий с окружением |
-| U.Episteme | Эпистема | Episteme | Единица знания/описания как артефакт |
-| U.BoundedContext | Ограниченный контекст | Bounded Context | Семантическая рамка со своим словарём, ролями и инвариантами |
-| U.Boundary | Граница | Boundary | Разделение внутреннего и внешнего |
-| U.Interaction | Взаимодействие | Interaction | Обмен через границу системы |
-
-### 2.2. Трансформация (действие и изменение)
-
-| FPF ID | Понятие | EN | Определение |
-|--------|---------|-----|-------------|
-| U.Method | Метод | Method | Абстрактный способ действия (capability), порождающий рабочий продукт |
-| U.MethodDescription | Описание метода | Method Description | Рецепт/инструкция для выполнения метода |
-| U.Work | Работа | Work | Запись свершившегося действия (occurrence) |
-| U.WorkPlan | План работ | Work Plan | Расписание намерений (schedule of intent) |
-
-### 2.3. Роли и способности
-
-| FPF ID | Понятие | EN | Определение |
-|--------|---------|-----|-------------|
-| U.RoleAssignment | Назначение роли | Role Assignment | Контекстная привязка роли к носителю (Holder#Role:Context) |
-| U.Capability | Способность | Capability | Диспозиционное свойство — возможность выполнить действие |
-| U.ServiceClause | Обещание сервиса | Service Clause | Контракт обслуживания (promise content) |
-| U.Commitment | Обязательство | Commitment | Деонтический объект (obligation/permission/prohibition) |
-
-### 2.4. Типы и измерение
-
-| FPF ID | Понятие | EN | Определение |
-|--------|---------|-----|-------------|
-| U.Kind | Вид/Тип | Kind | Классификационная единица с интенсионалом и экстенсионалом |
-| U.Characteristic | Характеристика | Characteristic | Измеряемая ось оценки объекта |
-| U.Flow | Поток | Flow | Эволюция ограничений (constraint validity) |
-
-### 2.5. Ключевые различения FPF (A.7 Strict Distinction)
-
-| Различение | Значение |
-|-----------|----------|
-| Объект ≠ Описание ≠ Носитель | Вещь в реальности ≠ модель вещи ≠ файл, где лежит модель |
-| Роль ≠ Носитель роли | Функция (Role) ≠ тот, кто её исполняет (Holder) |
-| Метод ≠ Описание метода ≠ Работа | Способность ≠ рецепт ≠ факт выполнения |
-| Характеристика ≠ Метрика ≠ Индикатор | Ось оценки ≠ единица измерения ≠ наблюдаемый признак |
-| Знание ≠ Обучение ≠ Представление | Pack ≠ курс/тренинг ≠ конкретная сборка для аудитории |
-
-> **Обновление.** При добавлении нового понятия в FPF — оно должно быть добавлено в эту таблицу.
+| Level | Defines | Does not define |
+|-------|---------|----------------|
+| FPF | Universal concepts (U.*) | Domain concepts |
+| SPF | Fixes FPF concepts + entity types + format | Domain content |
+| Pack | Domain concepts linked to SPF | Concepts of other domains |
+| Downstream | Nothing new | Does not define, only references |
 
 ---
 
-## 3. Виды сущностей SPF
+## 2. SPF base ontology (inherited from FPF)
 
-> SPF определяет виды сущностей, которые Pack использует для организации знаний.
-> Каждый вид привязан к одному или нескольким понятиям FPF.
+> These concepts are universal — the same for all domains.
+> Source: FPF-Spec, Part A (Kernel Architecture Cluster).
 
-| Код | Вид | FPF-понятие | Определение |
-|-----|-----|-------------|-------------|
-| `M` | Метод | U.Method | Описание способности производить рабочий продукт |
-| `WP` | Рабочий продукт | U.Work + U.Episteme | Наблюдаемый результат применения метода |
-| `FM` | Режим ошибки | — (SPF-специфичный) | Типичное нарушение метода с наблюдаемыми симптомами |
-| `D` | Различение | A.7 Strict Distinction | Концептуальная граница, нарушение которой создаёт путаницу |
-| `R` | Роль | U.RoleAssignment | Контекстная функция в bounded context |
-| `CHR` | Характеристика | U.Characteristic | Измеримая ось оценки сущности |
-| `SOTA` | SoTA-аннотация | — (SPF-специфичный) | Статус актуальности утверждения + критерий пересмотра |
-| `MAP` | Карта | U.Episteme | Навигационная структура связей между сущностями |
-| `SC` | Обещание сервиса | U.ServiceClause | Контракт обслуживания: кому, зачем, что получит, критерий приёмки |
+### 2.1. Fundamental types
+
+| FPF ID | Concept | EN | Definition |
+|--------|---------|-----|-----------|
+| U.Entity | Entity | Entity | Primitive of distinction — everything that can be singled out and named |
+| U.Holon | Holon | Holon | Composition unit: a whole composed of parts, itself being a part |
+| U.System | System | System | Holon with a boundary interacting with its environment |
+| U.Episteme | Episteme | Episteme | Unit of knowledge/description as an artifact |
+| U.BoundedContext | Bounded Context | Bounded Context | Semantic frame with its own vocabulary, roles and invariants |
+| U.Boundary | Boundary | Boundary | Separation of internal and external |
+| U.Interaction | Interaction | Interaction | Exchange across a system boundary |
+
+### 2.2. Transformation (action and change)
+
+| FPF ID | Concept | EN | Definition |
+|--------|---------|-----|-----------|
+| U.Method | Method | Method | Abstract way of acting (capability) that produces a work product |
+| U.MethodDescription | Method Description | Method Description | Recipe/instruction for executing a method |
+| U.Work | Work | Work | Record of a completed action (occurrence) |
+| U.WorkPlan | Work Plan | Work Plan | Schedule of intent |
+
+### 2.3. Roles and capabilities
+
+| FPF ID | Concept | EN | Definition |
+|--------|---------|-----|-----------|
+| U.RoleAssignment | Role Assignment | Role Assignment | Contextual binding of a role to a holder (Holder#Role:Context) |
+| U.Capability | Capability | Capability | Dispositional property — the ability to perform an action |
+| U.ServiceClause | Service Clause | Service Clause | Service contract (promise content) |
+| U.Commitment | Commitment | Commitment | Deontic object (obligation/permission/prohibition) |
+
+### 2.4. Types and measurement
+
+| FPF ID | Concept | EN | Definition |
+|--------|---------|-----|-----------|
+| U.Kind | Kind/Type | Kind | Classification unit with intension and extension |
+| U.Characteristic | Characteristic | Characteristic | Measurable evaluation axis for an object |
+| U.Flow | Flow | Flow | Evolution of constraints (constraint validity) |
+
+### 2.5. Key FPF distinctions (A.7 Strict Distinction)
+
+| Distinction | Meaning |
+|------------|---------|
+| Object ≠ Description ≠ Carrier | Thing in reality ≠ model of thing ≠ file where the model resides |
+| Role ≠ Role holder | Function (Role) ≠ the one who performs it (Holder) |
+| Method ≠ Method description ≠ Work | Capability ≠ recipe ≠ fact of execution |
+| Characteristic ≠ Metric ≠ Indicator | Evaluation axis ≠ unit of measurement ≠ observable sign |
+| Knowledge ≠ Learning ≠ Representation | Pack ≠ course/training ≠ specific assembly for an audience |
+
+> **Update.** When a new concept is added to FPF — it must be added to this table.
 
 ---
 
-## 4. Требования к онтологии Pack'а
+## 3. SPF entity types
 
-### 4.1. Размещение
+> SPF defines entity types that Pack uses to organize knowledge.
+> Each type is linked to one or more FPF concepts.
+
+| Code | Type | FPF concept | Definition |
+|------|------|-------------|-----------|
+| `M` | Method | U.Method | Description of a capability to produce a work product |
+| `WP` | Work Product | U.Work + U.Episteme | Observable result of applying a method |
+| `FM` | Failure Mode | — (SPF-specific) | Typical violation of a method with observable symptoms |
+| `D` | Distinction | A.7 Strict Distinction | Conceptual boundary whose violation causes confusion |
+| `R` | Role | U.RoleAssignment | Contextual function in a bounded context |
+| `CHR` | Characteristic | U.Characteristic | Measurable evaluation axis for an entity |
+| `SOTA` | SoTA annotation | — (SPF-specific) | Currency status of a statement + revision criterion |
+| `MAP` | Map | U.Episteme | Navigation structure of connections between entities |
+| `SC` | Service Clause | U.ServiceClause | Service contract: for whom, why, what they receive, acceptance criterion |
+
+---
+
+## 4. Requirements for Pack ontology
+
+### 4.1. Placement
 
 ```
-<repo>/ontology.md    — в корне каждого репо
+<repo>/ontology.md    — in the root of each repo
 ```
 
-Единообразное размещение: `ontology.md` в корне репо на **всех уровнях** (SPF, Pack, Downstream). Для Downstream файл ссылается на понятия Pack'а и SPF, новых понятий не вводит.
+Uniform placement: `ontology.md` in the repo root at **all levels** (SPF, Pack, Downstream). For Downstream the file references Pack and SPF-ontology concepts and introduces no new concepts.
 
-### 4.2. Обязательные секции
+### 4.2. Required sections
 
-#### Секция 1: Виды сущностей
+#### Section 1: Entity types
 
-Все типы Pack'а (базовые из SPF + расширенные) с привязкой к SPF:
+All Pack types (base from SPF + extended) linked to SPF:
 
-| Код | Вид | FPF/SPF-понятие | Определение | ≠ (что это НЕ) |
-|-----|-----|-----------------|-------------|-----------------|
-| `M` | Метод | U.Method | ... | ≠ сценарий |
-| `ARCH` | Архитектура | U.System + U.Episteme | ... | ≠ реализация |
+| Code | Type | FPF/SPF concept | Definition | not (what this is NOT) |
+|------|------|-----------------|-----------|------------------------|
+| `M` | Method | U.Method | ... | not a scenario |
+| `ARCH` | Architecture | U.System + U.Episteme | ... | not an implementation |
 
-**Обязательный столбец «FPF/SPF-понятие»** — родительское понятие из базовой онтологии (секция 2 этого документа). Каждый расширенный вид Pack'а обязан указать, к какому FPF-понятию он относится.
+**Required column "FPF/SPF concept"** — parent concept from the base ontology (section 2 of this document). Each extended Pack type must specify which FPF concept it belongs to.
 
-#### Секция 2: Глоссарий домена
+#### Section 2: Domain glossary
 
-Ключевые понятия домена с привязкой к SPF-онтологии:
+Key domain concepts linked to the SPF ontology:
 
-| Термин | Определение | Родительское понятие (SPF) | Связан с |
-|--------|-------------|---------------------------|----------|
-| Цифровая платформа | Цифровая среда экосистемы | U.System | DP.ARCH.001 |
-| ИИ-система | Система, использующая LLM | U.System + U.Capability | DP.ROLE.001 |
+| Term | Definition | Parent concept (SPF) | Related to |
+|------|-----------|---------------------|-----------|
+| Digital platform | Digital ecosystem environment | U.System | DP.ARCH.001 |
+| AI system | System using LLM | U.System + U.Capability | DP.ROLE.001 |
 
-**Обязательный столбец «Родительское понятие (SPF)»** — к какому универсальному понятию из базовой онтологии относится этот доменный термин.
+**Required column "Parent concept (SPF)"** — which universal concept from the base ontology this domain term belongs to.
 
-#### Секция 3: Отношения между видами
+#### Section 3: Relations between types
 
-Как в текущей версии (без изменений).
+As in the current version (unchanged).
 
-#### Секция 4 (опц.): Иерархия типов
+#### Section 4 (opt.): Type hierarchy
 
-#### Секция 5 (опц.): Кросс-Pack связи
+#### Section 5 (opt.): Cross-Pack links
 
-### 4.3. Требования к Downstream
+### 4.3. Downstream requirements
 
-Downstream-репозитории (код, боты, курсы) содержат два вида понятий:
+Downstream repositories (code, bots, courses) contain two kinds of concepts:
 
-#### Ссылочные понятия (из Pack)
+#### Reference concepts (from Pack)
 
-Downstream **ссылается** на понятия Pack'а и SPF-онтологии. Эти понятия не переопределяются — используются as-is с указанием источника.
+Downstream **references** Pack and SPF-ontology concepts. These concepts are not redefined — used as-is with source indicated.
 
-#### Собственные понятия (реализационные)
+#### Own concepts (implementation)
 
-Downstream **может** вводить собственные понятия, специфичные для реализации (терминология кода, UI-термины, внутренние абстракции). Требования:
+Downstream **may** introduce its own concepts specific to the implementation (code terminology, UI terms, internal abstractions). Requirements:
 
-1. **Привязка к Pack.** Каждое собственное понятие обязано быть связано с понятием из ontology.md upstream-Pack'а
-2. **Проверка доменности.** Knowledge Extractor при обнаружении нового понятия в downstream проверяет: является ли оно доменным (универсальным для предметной области)?
-   - **Да, доменное** → предложить добавить в Pack (через Extraction Report), а в downstream оставить ссылку
-   - **Нет, реализационное** → оставить в downstream ontology.md с привязкой к Pack-понятию
-3. **Не дублирование.** Если понятие уже есть в Pack — ссылаться, не переопределять
+1. **Linked to Pack.** Each own concept must be connected to a concept from the upstream Pack's ontology.md
+2. **Domain check.** The Knowledge Extractor upon discovering a new concept in downstream checks: is it a domain concept (universal to the subject area)?
+   - **Yes, domain** — propose adding to Pack (via Extraction Report), keep a reference in downstream
+   - **No, implementation** — keep in downstream ontology.md with a link to the Pack concept
+3. **No duplication.** If the concept already exists in Pack — reference it, do not redefine
 
-#### Тест: доменное vs реализационное
+#### Test: domain vs implementation
 
-| Критерий | Доменное (→ Pack) | Реализационное (→ Downstream) |
-|----------|-------------------|-------------------------------|
-| Используется в другом downstream? | Да | Нет |
-| Привязано к конкретному коду/UI? | Нет | Да |
-| Имеет смысл без этого репо? | Да | Нет |
+| Criterion | Domain (Pack) | Implementation (Downstream) |
+|-----------|--------------|------------------------------|
+| Used in another downstream? | Yes | No |
+| Tied to specific code/UI? | No | Yes |
+| Makes sense without this repo? | Yes | No |
 
-#### Обязательные секции downstream ontology.md
+#### Required sections of downstream ontology.md
 
-| Секция | Содержание |
-|--------|-----------|
-| Upstream-зависимости | Какие Pack'и и SPF используются |
-| Используемые понятия из Pack | Ссылочные понятия с указанием, как используются |
-| Терминология реализации | Собственные понятия с привязкой к Pack |
-
----
-
-## 5. Правила
-
-1. **Наследование FPF → SPF.** Базовая онтология (секция 2) пополняется только из FPF. Доменных понятий в SPF-онтологии быть не должно
-2. **Привязка к родителю.** Каждое доменное понятие Pack'а обязано иметь родительское понятие из SPF-онтологии
-3. **Владелец изменений — Экстрактор.** Онтологию (`ontology.md`) на всех уровнях изменяет только Knowledge Extractor (DP.AISYS.013). Пользователь предлагает изменения; Экстрактор формализует, валидирует и применяет
-4. **Полнота.** Онтология включает ВСЕ виды сущностей Pack'а
-5. **Согласованность.** Определения в онтологии = определения в bounded context
-6. **Не дублирование.** Различения остаются в `01B-distinctions.md`
-7. **Кодирование.** Коды видов — по SPF.SPEC.001
-8. **Актуальность.** При добавлении сущности — обновить онтологию
-9. **Кросс-уровневая связь.** Понятия между уровнями связаны, не пересекаются:
-
-| Уровень | Связь с верхним | Собственные понятия |
-|---------|-----------------|---------------------|
-| FPF | — | Универсальные (U.*) |
-| SPF | Наследует FPF | Виды сущностей, формат |
-| Pack | Расширяет SPF, привязка к U.* | Доменные понятия |
-| Downstream | Ссылается на Pack + собственные реализационные | Реализационные, привязанные к Pack |
-
-10. **Каскадирование.** При изменении ontology.md на верхнем уровне — проверить и обновить нижние (SPF → Pack → Downstream)
-11. **Двуязычность (DDD UL).** Глоссарий домена (§2 в Pack, §2 в downstream) обязан содержать столбцы Term (RU) и Term (EN). EN используется в коде, файлах, git. RU — в документах и дискурсе
-12. **Аббревиатуры.** Каждый ontology.md содержит секцию Abbreviations. Аббревиатуры наследуются сверху вниз (FPF/SPF → Pack → Downstream) с указанием уровня происхождения
-13. **Ru-first (язык документов).** Русский — основной язык всех шаблонов, протоколов и документов IWE. Английский допускается только для: (a) технических ключей (YAML frontmatter: `type`, `status`, `date`), (b) общепринятых аббревиатур из секции Abbreviations, (c) имён собственных (GitHub, Railway). Английские фразы с русским эквивалентом — недопустимы (Completion rate → Выполнение, Carry-over → Перенос). Устоявшиеся заимствования (ревью, бэклог, дедлайн) допускаются
+| Section | Content |
+|---------|---------|
+| Upstream dependencies | Which Packs and SPF are used |
+| Concepts used from Pack | Reference concepts with indication of how they are used |
+| Implementation terminology | Own concepts linked to Pack |
 
 ---
 
-## 6. Аббревиатуры (FPF/SPF уровень)
+## 5. Rules
 
-> Аббревиатуры, определённые на уровне FPF и SPF. Pack'и наследуют их и добавляют свои.
+1. **Inheritance FPF → SPF.** The base ontology (section 2) is extended only from FPF. No domain concepts should be in the SPF ontology
+2. **Parent link.** Each Pack domain concept must have a parent concept from the SPF ontology
+3. **Owner of changes — Extractor.** The ontology (`ontology.md`) at all levels is changed only by the Knowledge Extractor (DP.AISYS.013). The user proposes changes; the Extractor formalizes, validates and applies them
+4. **Completeness.** The ontology includes ALL Pack entity types
+5. **Consistency.** Definitions in the ontology = definitions in the bounded context
+6. **No duplication.** Distinctions remain in `01B-distinctions.md`
+7. **Coding.** Type codes — per SPF.SPEC.001
+8. **Currency.** When adding an entity — update the ontology
+9. **Cross-level links.** Concepts between levels are linked, not overlapping:
 
-| Аббревиатура | Расшифровка (RU) | Full form (EN) | Уровень |
-|-------------|-----------------|----------------|---------|
-| FPF | Фреймворк первых принципов | First Principles Framework | FPF |
-| SPF | Фреймворк вторых принципов | Second Principles Framework | SPF |
-| UL | Единый язык | Ubiquitous Language | FPF (DDD) |
-| BC | Ограниченный контекст | Bounded Context | FPF (DDD) |
-| UTS | Единая система терминов | Unified Terminology System | FPF |
-| SoTA | Уровень современности | State of the Art | SPF |
-| KE | Экстракция знаний | Knowledge Extraction | SPF |
-| FM | Режим ошибки | Failure Mode | SPF |
-| WP | Рабочий продукт | Work Product | SPF |
-| M | Метод | Method | SPF |
-| D | Различение | Distinction | SPF |
-| R | Роль | Role | SPF |
-| CHR | Характеристика | Characteristic | SPF |
-| MAP | Карта | Map | SPF |
-| IPO | Вход-Обработка-Выход | Input-Processing-Output | SPF |
+| Level | Link to level above | Own concepts |
+|-------|---------------------|-------------|
+| FPF | — | Universal (U.*) |
+| SPF | Inherits FPF | Entity types, format |
+| Pack | Extends SPF, linked to U.* | Domain concepts |
+| Downstream | References Pack + own implementation | Implementation, linked to Pack |
 
----
-
-## 7. Связь с другими спецификациями
-
-| Спецификация | Связь |
-|-------------|-------|
-| FPF-Spec (Part A) | Источник базовой онтологии (секция 2) |
-| SPF.SPEC.001 (кодирование) | Коды видов сущностей |
-| 01A-bounded-context | Границы домена; онтология определяет понятия внутри границ |
-| 01B-distinctions | Различения; онтология ссылается на них |
-| 00-pack-manifest | Регистрация расширенных видов |
-| 07-map | Связи между конкретными сущностями (онтология — между видами) |
-| DP.AISYS.013 (Экстрактор) | Единственный агент, изменяющий онтологию |
+10. **Cascading.** When ontology.md changes at a higher level — check and update lower ones (SPF → Pack → Downstream)
+11. **Bilingualism (DDD UL).** The domain glossary (section 2 in Pack, section 2 in downstream) must contain Term (RU) and Term (EN) columns. EN is used in code, files, git. RU — in documents and discourse
+12. **Abbreviations.** Each ontology.md contains an Abbreviations section. Abbreviations are inherited top-down (FPF/SPF → Pack → Downstream) with indication of origin level
+13. **Language of documents.** Russian is the primary language of all IWE templates, protocols and documents. English is permitted only for: (a) technical keys (YAML frontmatter: `type`, `status`, `date`), (b) established abbreviations from the Abbreviations section, (c) proper names (GitHub, Railway). English phrases with a Russian equivalent are not permitted. Established loanwords are permitted
 
 ---
 
-*Этот документ: `SPF.SPEC.002`*
+## 6. Abbreviations (FPF/SPF level)
+
+> Abbreviations defined at the FPF and SPF level. Packs inherit them and add their own.
+
+| Abbreviation | Full form (RU) | Full form (EN) | Level |
+|-------------|----------------|----------------|-------|
+| FPF | First Principles Framework | First Principles Framework | FPF |
+| SPF | Second Principles Framework | Second Principles Framework | SPF |
+| UL | Ubiquitous Language | Ubiquitous Language | FPF (DDD) |
+| BC | Bounded Context | Bounded Context | FPF (DDD) |
+| UTS | Unified Terminology System | Unified Terminology System | FPF |
+| SoTA | State of the Art | State of the Art | SPF |
+| KE | Knowledge Extraction | Knowledge Extraction | SPF |
+| FM | Failure Mode | Failure Mode | SPF |
+| WP | Work Product | Work Product | SPF |
+| M | Method | Method | SPF |
+| D | Distinction | Distinction | SPF |
+| R | Role | Role | SPF |
+| CHR | Characteristic | Characteristic | SPF |
+| MAP | Map | Map | SPF |
+| IPO | Input-Processing-Output | Input-Processing-Output | SPF |
+
+---
+
+## 7. Relationship to other specifications
+
+| Specification | Relationship |
+|--------------|-------------|
+| FPF-Spec (Part A) | Source of base ontology (section 2) |
+| SPF.SPEC.001 (coding) | Entity type codes |
+| 01A-bounded-context | Domain boundaries; ontology defines concepts within boundaries |
+| 01B-distinctions | Distinctions; ontology references them |
+| 00-pack-manifest | Registration of extended types |
+| 07-map | Links between specific entities (ontology — between types) |
+| DP.AISYS.013 (Extractor) | Sole agent that changes the ontology |
+
+---
+
+*This document: `SPF.SPEC.002`*
