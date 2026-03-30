@@ -1,277 +1,277 @@
-# FPF, SPF и Pack: концептуальная модель
+# FPF, SPF and Pack: Conceptual Model
 
-Этот документ фиксирует **концептуальную модель** организации знаний в рамках SPF.
-
----
-
-## 1. Зачем всё это: знание, обучение и эпоха ИИ
-
-### 1.1. У профи есть картина предметной области
-
-В любой прикладной сфере у сильных специалистов есть **картина предметной области**: что здесь важно, какие риски типичны, где «тонкие места», какие различения нельзя путать.
-
-Эта картина почти всегда складывается из практики, стандартов, ошибок и их разбора. Она существует иногда параллельно с любыми учебниками и курсами как «профессиональная реальность».
-
-### 1.2. Почему в эпоху ИИ формализация стала критичной
-
-Сейчас ИИ может существенно ускорить понимание области **при наличии структуры знания**, а при отсутствии формализованной структуры ИИ закрепляет путаницу.
+This document establishes the **conceptual model** for knowledge organization within SPF.
 
 ---
 
-## 2. Понятия и различения: полный словарь
+## 1. Why all this: knowledge, learning and the AI era
 
-### 2.1. Объект, описание, носитель
+### 1.1. Professionals have a picture of their domain
 
-| Термин | Определение | Пример |
-|--------|-------------|--------|
-| **Объект** | То, что существует «в реальности области» | Автомобиль; строительный объект |
-| **Описание** | Модель/текст/схема про объект | Карточка характеристики, спецификация |
-| **Носитель** | Файл/страница/видео/сайт, где лежит описание | Markdown-файл, PDF, веб-страница |
+In any applied field, strong specialists have a **picture of their domain**: what matters here, what risks are typical, where the "weak spots" are, which distinctions must not be confused.
 
-**Нельзя путать**: объект ≠ описание ≠ носитель.
+This picture almost always emerges from practice, standards, mistakes and their analysis. It exists sometimes parallel to any textbooks and courses as "professional reality".
 
-### 2.2. Знание, обучение, представление
+### 1.2. Why formalization became critical in the AI era
 
-| Термин | Определение | Пример |
-|--------|-------------|--------|
-| **Знание** | Структурированное содержание области | Pack |
-| **Обучение** | Способ провести человека по знанию | Курс, тренинг |
-| **Представление (view)** | Конкретная сборка знания под аудиторию | Гайд, курс, RAG-индекс |
-
-**Нельзя путать**: знание ≠ курс/учебник ≠ любая публикация.
-
-### 2.3. Метод, инструмент, практика, сценарий
-
-| Термин | Определение | Пример |
-|--------|-------------|--------|
-| **Метод** | Способ действия/оценки | Учёт времени |
-| **Инструмент** | Средство выполнения | Toggl, таблица Excel |
-| **Практика** | Воспроизводимый паттерн применения методов | Ежедневная фиксация времени |
-| **Сценарий/маршрут** | Пошаговый план | «30-дневная программа» |
-
-**Нельзя путать**: метод ≠ инструмент; метод ≠ сценарий.
-
-### 2.4. Характеристика, метрика, индикатор
-
-| Термин | Определение | Пример |
-|--------|-------------|--------|
-| **Характеристика** | Ось оценки объекта | «Безопасность», «агентность» |
-| **Метрика** | Измеримая величина | Время реакции, % выполнения |
-| **Индикатор** | Наблюдаемый признак/показатель | Количество инициатив за неделю |
-
-### 2.5. Состояние
-
-**Состояние** — класс/режим объекта по значениям характеристик/индикаторов.
-
-**Нельзя путать**: состояние ≠ этап обучения. Состояние — «как сейчас», а не «как к этому прийти».
-
-### 2.6. Рабочий продукт (work product)
-
-**Рабочий продукт** — наблюдаемый, проверяемый результат метода/оценки.
-
-### 2.7. Типовые ошибки интерпретации (failure modes)
-
-**Failure mode** — типовая ошибка понимания/подмены.
-
-### 2.8. SoTA-статус
-
-**SoTA-статус** — отметка актуальности утверждения/интерпретации.
-
-| Статус | Значение |
-|--------|----------|
-| `current` | Актуально, подтверждено практикой |
-| `hypothesis` | Новое, требует проверки |
-| `deprecated` | Устарело |
-
-### 2.9. Предметная область и bounded context
-
-| Термин | Определение |
-|--------|-------------|
-| **Предметная область** | Прикладная сфера с языком, объектами, методами |
-| **Bounded context** | Явно зафиксированные границы и словарь области |
+AI can significantly accelerate domain understanding **when a knowledge structure exists**, but without a formalized structure AI reinforces confusion.
 
 ---
 
-## 3. Первые принципы
+## 2. Concepts and distinctions: full glossary
 
-### 3.1. Что такое первые принципы
+### 2.1. Object, description, carrier
 
-**Первые принципы** — универсальные различения и требования к корректному мышлению о знании:
+| Term | Definition | Example |
+|------|-----------|---------|
+| **Object** | What exists "in the domain reality" | Car; construction object |
+| **Description** | Model/text/diagram about an object | Characteristic card, specification |
+| **Carrier** | File/page/video/site where the description resides | Markdown file, PDF, web page |
 
-- метод ≠ инструмент
-- результат ≠ описание результата
-- характеристика ≠ способ изменения
-- состояние ≠ план действий
-- объект ≠ модель
-- знание ≠ обучение
+**Must not confuse**: object ≠ description ≠ carrier.
 
-### 3.2. Универсальность первых принципов
+### 2.2. Knowledge, learning, representation
 
-Первые принципы **универсальны по содержанию**: одинаковы в строительстве, кулинарии, медицине, управлении.
+| Term | Definition | Example |
+|------|-----------|---------|
+| **Knowledge** | Structured domain content | Pack |
+| **Learning** | A way to guide a person through knowledge | Course, training |
+| **Representation (view)** | A specific assembly of knowledge for an audience | Guide, course, RAG index |
+
+**Must not confuse**: knowledge ≠ course/textbook ≠ any publication.
+
+### 2.3. Method, tool, practice, scenario
+
+| Term | Definition | Example |
+|------|-----------|---------|
+| **Method** | A way of acting/evaluating | Time tracking |
+| **Tool** | A means of execution | Toggl, Excel spreadsheet |
+| **Practice** | A reproducible pattern of applying methods | Daily time recording |
+| **Scenario/route** | A step-by-step plan | "30-day program" |
+
+**Must not confuse**: method ≠ tool; method ≠ scenario.
+
+### 2.4. Characteristic, metric, indicator
+
+| Term | Definition | Example |
+|------|-----------|---------|
+| **Characteristic** | An evaluation axis for an object | "Safety", "agency" |
+| **Metric** | A measurable quantity | Response time, % completion |
+| **Indicator** | An observable sign/measure | Number of initiatives per week |
+
+### 2.5. State
+
+**State** — a class/mode of an object based on characteristic/indicator values.
+
+**Must not confuse**: state ≠ learning stage. State is "how it is now", not "how to get there".
+
+### 2.6. Work product
+
+**Work product** — an observable, verifiable result of a method/evaluation.
+
+### 2.7. Typical interpretation errors (failure modes)
+
+**Failure mode** — a typical misunderstanding/substitution error.
+
+### 2.8. SoTA status
+
+**SoTA status** — a marker of the currency of a statement/interpretation.
+
+| Status | Meaning |
+|--------|---------|
+| `current` | Current, confirmed by practice |
+| `hypothesis` | New, requires verification |
+| `deprecated` | Outdated |
+
+### 2.9. Domain and bounded context
+
+| Term | Definition |
+|------|-----------|
+| **Domain** | An applied field with language, objects, methods |
+| **Bounded context** | Explicitly fixed boundaries and vocabulary of the domain |
+
+---
+
+## 3. First Principles
+
+### 3.1. What are first principles
+
+**First principles** — universal distinctions and requirements for correct thinking about knowledge:
+
+- method ≠ tool
+- result ≠ description of result
+- characteristic ≠ way to change it
+- state ≠ action plan
+- object ≠ model
+- knowledge ≠ learning
+
+### 3.2. Universality of first principles
+
+First principles are **universal in content**: the same in construction, cooking, medicine, management.
 
 ---
 
 ## 4. FPF — First Principles Framework
 
-### 4.1. Первые принципы существуют до формализации
+### 4.1. First principles exist before formalization
 
-Первые принципы «были всегда». **FPF не изобретает первые принципы.**
+First principles "have always existed". **FPF does not invent first principles.**
 
-FPF делает три вещи:
+FPF does three things:
 
-| Функция | Описание |
-|---------|----------|
-| **Экспликация** | Делает первые принципы явными |
-| **Нормативность** | Превращает их в требования корректности |
-| **Дисциплина** | Задаёт язык и ограничения |
+| Function | Description |
+|----------|-------------|
+| **Explication** | Makes first principles explicit |
+| **Normativity** | Turns them into correctness requirements |
+| **Discipline** | Sets the language and constraints |
 
-### 4.2. Что FPF задаёт
+### 4.2. What FPF defines
 
-- универсальные типы сущностей (роль, метод, рабочий продукт, процесс, описание, носитель)
-- допустимые и недопустимые различения
-- правила работы с контекстами (bounded context)
-- принципы многовидового описания (multi-view)
-- требования к проверяемости, SoTA и доверительности
+- universal entity types (role, method, work product, process, description, carrier)
+- permissible and impermissible distinctions
+- rules for working with contexts (bounded context)
+- principles of multi-view description
+- requirements for verifiability, SoTA and trustworthiness
 
-### 4.3. Что FPF НЕ делает
+### 4.3. What FPF does NOT do
 
-- **не описывает конкретные предметные области**
-- не содержит вторых принципов
-- не является курсом
-- не даёт «пошаговых сценариев»
+- **does not describe specific domains**
+- does not contain second principles
+- is not a course
+- does not provide "step-by-step scenarios"
 
 ---
 
-## 5. Вторые принципы
+## 5. Second Principles
 
-### 5.1. Что такое вторые принципы
+### 5.1. What are second principles
 
-**Вторые принципы** — устойчивые предметные закономерности и различения внутри конкретной области:
+**Second principles** — stable domain regularities and distinctions within a specific field:
 
-> Что здесь реально важно? Какие различения критичны? Какие типовые ошибки?
+> What really matters here? Which distinctions are critical? What are the typical errors?
 
-### 5.2. Они существуют до формализации
+### 5.2. They exist before formalization
 
-Вторые принципы живут в опыте профессионалов, стандартах, ремесле, «чувстве области».
+Second principles live in professionals's experience, standards, craft, "feel of the domain".
 
-### 5.3. В чём их универсальность
+### 5.3. Their universality
 
-Вторые принципы:
-- **не универсальны по содержанию** (у разных областей разные)
-- но **«универсальны по типу»**: в любой области они есть и можно доводить до инженерной формы
+Second principles:
+- **are not universal in content** (different domains have different ones)
+- but are **"universal in type"**: they exist in any domain and can be brought to engineering form
 
 ---
 
 ## 6. SPF — Second Principles Framework
 
-### 6.1. Что такое SPF
+### 6.1. What SPF is
 
-**SPF** — это фреймворк, который задаёт **как оформлять вторые принципы** предметной области так, чтобы получалось инженерное знание.
+**SPF** — a framework that defines **how to formalize second principles** of a domain so that engineering knowledge results.
 
-### 6.2. Что делает SPF
+### 6.2. What SPF does
 
-**Минимальные обязательные элементы:**
+**Minimum required elements:**
 - bounded context
-- ключевые различения
-- характеристики
-- методы оценки/проверки
-- рабочие продукты
+- key distinctions
+- characteristics
+- evaluation/verification methods
+- work products
 - failure modes
-- SoTA-статусы и критерии пересмотра
+- SoTA statuses and revision criteria
 
-**Требования к структуре:**
-- правила идентификаторов и ссылок
-- каноническая структура pack'а
+**Structural requirements:**
+- identifier and reference rules
+- canonical pack structure
 
-**Процессные гейты:**
+**Process gates:**
 - process lint
-- контракты между source-of-truth и downstream
+- contracts between source-of-truth and downstream
 
-### 6.3. Что SPF НЕ делает
+### 6.3. What SPF does NOT do
 
-- не добавляет предметное содержание
-- не решает, какие вторые принципы верны
-- не строит курсы
-- не заменяет экспертизу
+- does not add domain content
+- does not decide which second principles are correct
+- does not build courses
+- does not replace expertise
 
-### 6.4. Как SPF связан с FPF
+### 6.4. How SPF relates to FPF
 
 | FPF | SPF |
 |-----|-----|
-| Задаёт корректность типов и различений | Задаёт инженерный формат фиксации предметного |
-| Предотвращает логическую путаницу | Предотвращает превращение знания в «сборник советов» |
+| Defines correctness of types and distinctions | Defines engineering format for capturing domain content |
+| Prevents logical confusion | Prevents knowledge from becoming a "collection of tips" |
 
 ---
 
-## 7. Pack — паспорт предметной области
+## 7. Pack — domain passport
 
-### 7.1. Что это такое
+### 7.1. What it is
 
-**Паспорт предметной области** (он же **pack**) — оформленное и стабилизированное инженерное описание области.
+**Domain passport** (also **pack**) — a formalized and stabilized engineering description of a domain.
 
-> Pack = паспорт предметной области
+> Pack = domain passport
 
-### 7.2. Pack — это результат, не процесс
+### 7.2. Pack is a result, not a process
 
-Pack — это **артефакт знания** (source of truth), не процесс.
+Pack is a **knowledge artifact** (source of truth), not a process.
 
-### 7.3. Что включает pack
+### 7.3. What a pack includes
 
-| Элемент | Описание |
-|---------|----------|
-| Bounded context | Зафиксированная семантическая рамка области |
-| Различения | Концептуальные границы домена |
-| Доменные сущности | Роли, объекты внимания, ограничения |
-| Методы | Способы действия (не сценарии) |
-| Рабочие продукты | Проверяемые результаты методов |
-| Failure modes | Типовые ошибки интерпретации |
-| SoTA-аннотации | Статусы актуальности |
-| Карта связей | Граф связей между элементами |
+| Element | Description |
+|---------|-------------|
+| Bounded context | Fixed semantic frame of the domain |
+| Distinctions | Conceptual boundaries of the domain |
+| Domain entities | Roles, objects of attention, constraints |
+| Methods | Ways of acting (not scenarios) |
+| Work products | Verifiable results of methods |
+| Failure modes | Typical interpretation errors |
+| SoTA annotations | Currency statuses |
+| Map | Graph of connections between pack elements |
 
-### 7.4. Чем pack НЕ является
+### 7.4. What a pack is NOT
 
-| Pack — это НЕ | Где должно быть |
-|---------------|-----------------|
-| Курс, учебник | Downstream |
-| Маршрут развития | Downstream |
-| «Как внедрять» | Downstream |
-| Эмбеддинги/индекс | Downstream |
+| Pack is NOT | Where it should be |
+|-------------|-------------------|
+| Course, textbook | Downstream |
+| Development route | Downstream |
+| "How to implement" | Downstream |
+| Embeddings/index | Downstream |
 
 ---
 
-## 8. Как создаётся pack
+## 8. How a pack is created
 
-### 8.1. Логический порядок
+### 8.1. Logical order
 
-1. **Первые принципы** эксплицированы в FPF
-2. **Вторые принципы** фиксируются по требованиям SPF
-3. **Pack** — результат оформления
+1. **First principles** explicated in FPF
+2. **Second principles** fixed according to SPF requirements
+3. **Pack** — the result of formalization
 
-### 8.2. Практический процесс (итерации)
+### 8.2. Practical process (iterations)
 
-#### Итерация 0: Доменный контракт
+#### Iteration 0: Domain contract
 - Bounded context
 - Core distinctions
-- Критерии истины
+- Truth criteria
 
-#### Итерация 1: Инженерная структура
-- Каталог характеристик
-- Шаблон карточки
-- Карта верхнего уровня
+#### Iteration 1: Engineering structure
+- Characteristic catalog
+- Card template
+- Top-level map
 
-#### Итерация 2: MVP-характеристика
-- Определение и различения
-- Индикаторы/метрики
-- Методы оценки
-- Рабочие продукты
-- Типовые ошибки
-- SoTA-статус
+#### Iteration 2: MVP characteristic
+- Definition and distinctions
+- Indicators/metrics
+- Evaluation methods
+- Work products
+- Typical errors
+- SoTA status
 
-#### Итерация 3+: Расширение
+#### Iteration 3+: Expansion
 
-#### Постоянно: Эволюция
+#### Continuously: Evolution
 
-### 8.3. Процессные этапы
+### 8.3. Process stages
 
 ```
 01. Domain Selection
@@ -289,157 +289,157 @@ Pack — это **артефакт знания** (source of truth), не про
 
 ---
 
-## 9. Как FPF помогает SPF и pack
+## 9. How FPF helps SPF and pack
 
-### 9.1. Что даёт FPF для SPF
+### 9.1. What FPF gives to SPF
 
-FPF обеспечивает **базовую корректность**: не путаем типы, не смешиваем инструмент/метод, не подменяем результат описанием.
+FPF ensures **basic correctness**: we don't confuse types, don't mix tool/method, don't substitute result for description.
 
-### 9.2. Что даёт FPF для pack
+### 9.2. What FPF gives to pack
 
-FPF делает pack непротиворечивым, трассируемым, устойчивым.
+FPF makes the pack consistent, traceable, stable.
 
-### 9.3. Как SPF помогает создавать pack
+### 9.3. How SPF helps create a pack
 
-SPF задаёт «инженерную форму» и процессные гейты (lint).
-
----
-
-## 10. Типовые ошибки (анти-паттерны)
-
-### 10.1. Ошибки уровня pack
-
-| Ошибка | Как избежать |
-|--------|--------------|
-| Pack превращается в обучение | Дидактика — downstream |
-| Состояния становятся «этапами» | Состояния — классы, не последовательность |
-| Инструменты объявляются методами | Метод ≠ инструмент |
-| Артефакт подменяет факт | Рабочий продукт ≠ описание |
-| SoTA превращается в «обзор статей» | SoTA = статус + revision criterion |
-| Downstream становится source-of-truth | Pack — единственный source-of-truth |
-
-### 10.2. Запрещённые формулировки
-
-- Смешивать SPF и pack
-- Считать SPF универсальным знанием по содержанию
-- Считать pack обучающим материалом
-- Превращать методы в сценарии
-- Считать AI-представления источником истины
+SPF defines the "engineering form" and process gates (lint).
 
 ---
 
-## 11. Иерархия уровней и три измерения
+## 10. Typical errors (anti-patterns)
 
-### 11.1. Каноническая иерархия
+### 10.1. Pack-level errors
+
+| Error | How to avoid |
+|-------|-------------|
+| Pack turns into learning | Didactics go downstream |
+| States become "stages" | States are classes, not sequences |
+| Tools are declared methods | Method ≠ tool |
+| Artifact substitutes fact | Work product ≠ description |
+| SoTA becomes "literature review" | SoTA = status + revision criterion |
+| Downstream becomes source-of-truth | Pack is the sole source-of-truth |
+
+### 10.2. Forbidden formulations
+
+- Mixing SPF and pack
+- Treating SPF as universal knowledge by content
+- Treating pack as learning material
+- Turning methods into scenarios
+- Treating AI representations as source of truth
+
+---
+
+## 11. Level hierarchy and three dimensions
+
+### 11.1. Canonical hierarchy
 
 ```
-FPF (Level 1)  →  фреймворк первых принципов
+FPF (Level 1)  →  first principles framework
        ↓
-SPF (Level 2)  →  фреймворк вторых принципов
+SPF (Level 2)  →  second principles framework
        ↓
-Pack           →  формализованное знание области
+Pack           →  formalized domain knowledge
        ↓
-Downstream     →  производные представления
+Downstream     →  derivative representations
 ```
 
-| Уровень | Универсальность |
-|---------|-----------------|
-| **FPF** | Универсален по содержанию |
-| **SPF** | Универсален по форме и процессу |
-| **Pack** | Специфичен для домена |
-| **Downstream** | Свободная форма |
+| Level | Universality |
+|-------|-------------|
+| **FPF** | Universal in content |
+| **SPF** | Universal in form and process |
+| **Pack** | Domain-specific |
+| **Downstream** | Free form |
 
-### 11.2. Три ортогональных измерения
+### 11.2. Three orthogonal dimensions
 
-| Измерение | Что определяет |
+| Dimension | What it defines |
 |-----------|----------------|
-| **Содержание** | Что наследуется семантически |
-| **Форма** | Как структурирован репозиторий |
-| **Процесс** | Как производится и поддерживается |
+| **Content** | What is inherited semantically |
+| **Form** | How the repository is structured |
+| **Process** | How it is produced and maintained |
 
-Измерения **независимы друг от друга**.
+Dimensions are **independent of each other**.
 
-### 11.3. Downstream: структурные протоколы документов
+### 11.3. Downstream: document structural protocols
 
-Downstream-репозитории (проекты, governance, поверхности) могут следовать различным структурным протоколам для организации своих документов:
+Downstream repositories (projects, governance, surfaces) may follow various structural protocols for organizing their documents:
 
-- Матрица «системы × роли» — документы проекта организованы по пересечению системных уровней и ролевых перспектив
-- Тематические разделы — документы организованы по предметным областям
-- Хронологические — журналы решений, логи, дневники
+- "Systems × roles" matrix — project documents organized by intersection of system levels and role perspectives
+- Thematic sections — documents organized by subject areas
+- Chronological — decision logs, logs, journals
 
-SPF не предписывает конкретную структуру downstream-репозиториев. SPF определяет **контракт** между Pack (source-of-truth) и downstream: downstream ссылается на Pack, но не дублирует и не подменяет его.
+SPF does not prescribe a specific structure for downstream repositories. SPF defines the **contract** between Pack (source-of-truth) and downstream: downstream references Pack but does not duplicate or substitute it.
 
-**Ключевое различение:** структурный протокол документов (форма) и Pack (содержание) — **ортогональны**. Один Pack может использоваться документами из разных ячеек структуры, а один документ может ссылаться на несколько Pack'ов.
+**Key distinction:** document structural protocol (form) and Pack (content) are **orthogonal**. One Pack can be used by documents from different structural cells, and one document may reference multiple Packs.
 
 ---
 
-## 12. Связь с другими методологиями
+## 12. Relationship to other methodologies
 
 ### 12.1. Domain-Driven Design (DDD)
 
-**Ключевое отличие**: DDD — про код. FPF/SPF/Pack — про формализацию знания до кода.
+**Key difference**: DDD is about code. FPF/SPF/Pack is about formalizing knowledge before code.
 
 ### 12.2. Ontology Engineering
 
-**Отличие**: Формальные онтологии — для машинного reasoning. Pack — для human-readable knowledge.
+**Difference**: Formal ontologies are for machine reasoning. Pack is for human-readable knowledge.
 
 ### 12.3. Knowledge Graphs
 
-**Отличие**: Knowledge Graphs — data-centric. Pack — methodology-centric.
+**Difference**: Knowledge Graphs are data-centric. Pack is methodology-centric.
 
-### 12.4. Чем FPF/SPF/Pack уникален
+### 12.4. What makes FPF/SPF/Pack unique
 
-1. Явное разделение содержания, формы и процесса
+1. Explicit separation of content, form and process
 2. Process-driven knowledge production
-3. Failure Modes как first-class citizens
-4. SoTA как атрибут, а не литобзор
+3. Failure Modes as first-class citizens
+4. SoTA as an attribute, not a literature review
 5. Downstream contract
 6. AI-ready, human-readable
 
 ---
 
-## 13. Краткий глоссарий
+## 13. Brief glossary
 
-| Термин | Определение |
-|--------|-------------|
-| **Bounded context** | Зафиксированная семантическая рамка области |
-| **Distinction** | Различение, предотвращающее путаницу |
-| **Method** | Способ действия, не сценарий |
-| **Work product** | Проверяемый результат метода |
-| **Failure mode** | Типовая ошибка интерпретации |
-| **SoTA annotation** | Статус актуальности утверждения |
-| **Map** | Граф связей между элементами pack'а |
-| **Downstream view** | Производное представление pack'а |
-| **Characteristic** | Ось оценки объекта |
-| **Indicator** | Наблюдаемый признак для оценки |
-| **State** | Класс/режим объекта по характеристикам |
-| **Practice** | Воспроизводимый паттерн применения методов |
-
----
-
-## 14. Финальная формула
-
-> **Первые принципы** — универсальные различения корректного мышления о знаниях; они существуют независимо от формализации.
-
-> **FPF (First Principles Framework)** — фреймворк, который эксплицирует первые принципы, делает их явными и нормативными.
-
-> **Вторые принципы** — устойчивые предметные закономерности конкретной области; они существуют до формализации в профессиональном опыте.
-
-> **SPF (Second Principles Framework)** — фреймворк требований и процессов для инженерной фиксации вторых принципов.
-
-> **Pack / паспорт области** — оформленное инженерное ядро конкретной области: source of truth.
+| Term | Definition |
+|------|-----------|
+| **Bounded context** | Fixed semantic frame of the domain |
+| **Distinction** | A distinction preventing confusion |
+| **Method** | A way of acting, not a scenario |
+| **Work product** | A verifiable result of a method |
+| **Failure mode** | A typical interpretation error |
+| **SoTA annotation** | Currency status of a statement |
+| **Map** | Graph of connections between pack elements |
+| **Downstream view** | A derivative representation of a pack |
+| **Characteristic** | An evaluation axis for an object |
+| **Indicator** | An observable sign for evaluation |
+| **State** | Class/mode of an object by characteristics |
+| **Practice** | A reproducible pattern of applying methods |
 
 ---
 
-## Ключевое различение: информация vs знание
+## 14. Final formula
 
-| Информация | Знание (Pack) |
-|------------|---------------|
-| Сырые данные | Формализовано через distinctions |
-| Не проверено | Прошло process SPF |
-| Нет SoTA-статуса | Имеет SoTA + revision criterion |
-| Input для процесса | Output процесса |
+> **First principles** — universal distinctions of correct thinking about knowledge; they exist independently of formalization.
+
+> **FPF (First Principles Framework)** — a framework that explicates first principles, makes them explicit and normative.
+
+> **Second principles** — stable domain regularities of a specific field; they exist before formalization in professional experience.
+
+> **SPF (Second Principles Framework)** — a framework of requirements and processes for engineering fixation of second principles.
+
+> **Pack / domain passport** — formalized engineering core of a specific domain: source of truth.
 
 ---
 
-*Этот документ является нормативным для SPF.*
+## Key distinction: information vs knowledge
+
+| Information | Knowledge (Pack) |
+|-------------|-----------------|
+| Raw data | Formalized through distinctions |
+| Not verified | Has gone through SPF process |
+| No SoTA status | Has SoTA + revision criterion |
+| Input for process | Output of process |
+
+---
+
+*This document is normative for SPF.*
