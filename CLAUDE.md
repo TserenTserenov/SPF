@@ -90,7 +90,8 @@ SPF/
 │   ├── downstream-contract.md
 │   ├── human-guides.md
 │   ├── SPF.SPEC.001-entity-coding.md
-│   └── SPF.SPEC.003-pack-scalability.md
+│   ├── SPF.SPEC.003-pack-scalability.md
+│   └── SPF.SPEC.004-service-clauses.md  # SC vs UC различение
 └── pack-template/      # Шаблон структуры Pack
     ├── 00-pack-manifest.md
     ├── 01-domain-contract/
@@ -99,7 +100,8 @@ SPF/
     ├── 04-work-products/
     ├── 05-failure-modes/
     ├── 06-sota/
-    └── 07-map/
+    ├── 07-map/
+    └── 08-service-clauses/  # Пользовательские обещания (SC)
 ```
 
 ---

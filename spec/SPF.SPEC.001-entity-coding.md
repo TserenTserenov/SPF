@@ -97,6 +97,7 @@ All identifiable entities are coded by a single rule:
 | `CHR` | Characteristic | `02-domain-entities/` |
 | `SOTA` | SoTA Annotation | `06-sota/` |
 | `MAP` | Map | `07-map/` |
+| `SC` | Service Clause | `08-service-clauses/` |
 
 ### Extended types (defined by a specific Pack)
 
