@@ -11,8 +11,12 @@
 
 set -euo pipefail
 
-# pack-lint (WP-242) — runs before auto-MAP, after set -e so failures block the commit
-bash "/Users/tserentserenov/IWE/DS-MCP/knowledge-mcp/scripts/pack-lint.sh"
+# pack-lint (WP-242) — optional; set IWE_PACK_LINT=/path/to/pack-lint.sh to enable
+if [[ -n "${IWE_PACK_LINT:-}" ]]; then
+    bash "$IWE_PACK_LINT"
+else
+    echo "[auto-MAP] optional linter not configured — skip"
+fi
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0" 2>/dev/null || echo "$0")")" && pwd)"

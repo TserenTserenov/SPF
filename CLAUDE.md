@@ -1,6 +1,6 @@
 # CLAUDE.md — SPF (Second Principles Framework)
 
-> **General instructions:** see `/Users/tserentserenov/IWE/CLAUDE.md`
+> **General instructions:** see `../CLAUDE.md`
 >
 > This file contains only specifics of this repository.
 
