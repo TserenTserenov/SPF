@@ -100,6 +100,10 @@ Pack           →  formalized knowledge of a specific domain
 Downstream     →  derived representations (courses, AI agents, guides)
 ```
 
+## Terminology note (ailev, 2026)
+
+Anatoly Levenchuk's DPF (Domain Principles Framework) ≈ our Pack (the SPF-instance level); his authoring layer `E.4.DPF` ≈ our SPF (the methodology/form level). No renaming planned — see `memory/fpf-reference.md` for the full correspondence table.
+
 ## SPF universality
 
 SPF is **universal in form and process**, but **not in content**:
