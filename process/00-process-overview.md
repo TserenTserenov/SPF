@@ -222,8 +222,8 @@ The Pack Creator role (DP.ROLE.062, DP.SC.048) uses the extension mechanism diff
 
 | Mode | Stage | Use of extension mechanism |
 |------|-------|----------------------------|
-| **Assembly** | cp.iwe ≤ 2 | Author copies distinction templates from neighbouring Packs (read-only) into their own `01-domain-contract/01B-distinctions.md`. No upstream touched. |
-| **Hybrid** | cp.iwe = 3 | Author starts from templates, modifies for own domain — writes only in `PACK-X/pack/X/`. |
+| **Assembly** | cp.iwe ≤ 2 | Skill extracts distinction candidates from the Pack's own SoTA sources (`06-sota/`, Step 1.5), presents them as a checklist. Author selects applicable candidates into their own `01-domain-contract/01B-distinctions.md`. The author's stated practice is a gated fallback only (when `sota_sources: none`; must be formalized into `06-sota/` as `source: author practice` with claims/evidence). Neighbouring Packs are referenced only for form (heading structure, maturity checklist), never for content. No upstream touched. |
+| **Hybrid** | cp.iwe = 3 | Author starts from SoTA-derived candidates, modifies for own domain — writes only in `PACK-X/pack/X/`. Neighbouring Packs: form only. |
 | **Full SPF** | cp.iwe ≥ 4 | Author originates own distinctions, writes in `PACK-X/pack/X/`. Upstream still read-only. |
 
 In all three modes, R30 blocks any write attempt to `SPF/` or `FPF/` (logged as `upstream_touch: BLOCKED_WRITE_ATTEMPT`) and redirects to the appropriate Pack section.
