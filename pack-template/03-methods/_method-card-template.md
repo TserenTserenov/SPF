@@ -2,6 +2,8 @@
 
 Copy this file to create a new method card. Replace all `_TBD_` and `DOMAIN.M.XXX` placeholders.
 
+> **2026-07-11 — ADDITIVE CHANGE:** added optional `Forces` and `Bias-Annotation` sections (WP-448 Ф9). Not breaking — both sections are optional; existing cards remain valid without them.
+
 ---
 
 ## YAML Frontmatter
@@ -38,6 +40,14 @@ _One to three sentences describing what this method is. Focus on what it does, n
 
 _Why does this method exist? What problem does it address? What does it enable?_
 
+### Forces
+
+_(Optional) What competing pressures does this method balance? Each force names a tension the method resolves or holds in check — not a step, not a distinction._
+
+| Force | Tension |
+|-------|---------|
+| _Force 1_ | _What pulls against what, and how this method holds the balance_ |
+
 ### Inputs
 
 _What does this method require to begin? (Information, prior work products, conditions)_
@@ -72,6 +82,14 @@ _What does this method produce?_
 _What conceptual distinctions are essential to performing this method correctly?_
 
 - [DOMAIN.D.XXX](../01-domain-contract/01B-distinctions.md#d-xxx): _Why it matters here_
+
+### Bias-Annotation
+
+_(Optional) What systematic distortion does a practitioner risk when applying this method — and in which direction? Name the bias, not a generic warning._
+
+| Bias | Direction of distortion |
+|------|--------------------------|
+| _Bias 1_ | _What gets over- or under-weighted, and why this method is prone to it_ |
 
 ### Failure Modes
 
