@@ -273,7 +273,9 @@ def update_manifest_file(pack_dir: Path, entity_index: str):
         r"## Entity Index\n.*?(?=\n## |\Z)", re.DOTALL
     )
     if pattern.search(content):
-        new_content = pattern.sub(index_with_note, content)
+        # Lambda replacement (not a string) avoids re treating backslash
+        # sequences in entity summaries (e.g. "\d") as template backreferences.
+        new_content = pattern.sub(lambda m: index_with_note, content)
     else:
         # Insert before "## Upstream" or "## Changelog" or at end
         for anchor in ["## Upstream", "## Changelog", "## Maintainers"]:
