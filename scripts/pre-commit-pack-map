@@ -74,6 +74,27 @@ fi
 
 echo "[auto-MAP] Pack files changed, regenerating MAP..."
 
+# Isolate the scan from concurrent uncommitted work (found 2026-07-17, WP-483
+# peer session): generate-map.py reads $PACK_DIR straight off disk, not the
+# git index — a parallel agent session's uncommitted new entity files sitting
+# in the working tree were getting folded into THIS commit's MAP/manifest
+# (their metadata staged and committed here, while the files themselves stayed
+# untracked). --keep-index leaves staged content visible on disk for the scan
+# and puts everything else out of the way; the trap restores it unconditionally.
+STASHED=0
+if git stash push --keep-index --include-untracked --quiet \
+    -m "pre-commit-pack-map: autostash $$" 2>/dev/null; then
+    STASHED=1
+fi
+restore_stash() {
+    if [[ "$STASHED" -eq 1 ]]; then
+        if ! git stash pop --quiet 2>/dev/null; then
+            echo "[auto-MAP] WARNING: could not auto-restore stashed changes — run 'git stash pop' manually (stash: pre-commit-pack-map: autostash $$)" >&2
+        fi
+    fi
+}
+trap restore_stash EXIT
+
 # Run generate-map.py
 if ! python3 "$GENERATE_MAP" "$PACK_DIR" --manifest 2>&1 | while read -r line; do
     echo "[auto-MAP] $line"
