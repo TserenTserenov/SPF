@@ -28,14 +28,24 @@ ID_RE='^[A-Z]+\.[A-Z]+\.[0-9]+'
 
 # Все entity-файлы репо с их ID (исключая .git/archive/inbox/template).
 # Печатает строки "ID<TAB>path". Точное сравнение ID, без glob-границ (180 ≠ 1800).
+# 2026-07-18 (дрейф DP.D): добавлен скан секционных ID внутри multi-entity файлов
+# («### DP.D.NNN:», «## [DP.D.NNN]») — 01B-distinctions.md несёт ~130 секций,
+# basename-скан был к ним слеп → коллизии файлов с секциями (DP.D.034/249/250 и др.).
 all_entity_ids() {
-  find "$REPO_ROOT" -name '*.md' -type f 2>/dev/null \
-    | grep -Ev '/(\.git|archive|inbox)/' \
-    | grep -Ev '/_[^/]*/' \
-    | while IFS= read -r path; do
-        eid=$(basename "$path" | grep -oE "$ID_RE" || true)
-        [ -n "$eid" ] && printf '%s\t%s\n' "$eid" "$path"
-      done
+  {
+    find "$REPO_ROOT" -name '*.md' -type f 2>/dev/null \
+      | grep -Ev '/(\.git|archive|inbox)/' \
+      | grep -Ev '/_[^/]*/' \
+      | while IFS= read -r path; do
+          eid=$(basename "$path" | grep -oE "$ID_RE" || true)
+          [ -n "$eid" ] && printf '%s\t%s\n' "$eid" "$path"
+        done
+    grep -rHoE '^#{2,3} +\[?[A-Z]+\.[A-Z]+\.[0-9]+\]?' "$REPO_ROOT/pack" --include='*.md' 2>/dev/null \
+      | grep -Ev '/(\.git|archive|inbox)/' \
+      | grep -Ev '/_[^/]*/' \
+      | sed -E 's/^(.*\.md):#{2,3} +\[?([A-Z]+\.[A-Z]+\.[0-9]+)\]?.*$/\2\t\1/' \
+      || true
+  } | sort -u
 }
 
 ENTITY_INDEX=$(all_entity_ids)
