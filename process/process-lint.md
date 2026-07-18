@@ -67,7 +67,7 @@ File pattern: `/pack/<domain>/05-failure-modes/*.md`
 
 ### CT-4: Distinction Added/Modified
 
-File pattern: `/pack/<domain>/01-domain-contract/01B-distinctions.md`
+File pattern: `/pack/<domain>/01-domain-contract/01B-distinctions.md` (single-file mode) **or** `/pack/<domain>/02-domain-entities/<DOMAIN>.D.<NNN>-*.md` (index+entity-card mode — packs past the `SPF.SPEC.003` scalability threshold; 01B holds only the index row, not the full entry — see `03-distinctions-work.md` § Output: Work Product)
 
 | Check | Verification |
 |-------|--------------|

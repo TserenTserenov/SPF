@@ -116,10 +116,16 @@ Note these for Stage 08.
 
 **Primary**: `/pack/<domain>/01-domain-contract/01B-distinctions.md`
 
-All distinctions in one file with:
-- Index table (ID, name, status, related items)
-- Full entries for each distinction
-- SoTA annotations with revision criteria
+**Two modes, by pack scale** (see `SPF.SPEC.003` § Size limit for domain knowledge files — reconciled 2026-07-18, drift found in PACK-digital-platform: `DS-my-strategy/inbox/bugs/drift-2026-07-18-dpd-numbering-collisions.md`):
+
+| Mode | When | 01B contains |
+|------|------|---------------|
+| Single-file | Pack below the SPF.SPEC.003 scalability threshold | Index table + full entry for every distinction |
+| Index + entity card | Pack has crossed the threshold | Index table only (ID, name, one-line summary, status, link); full entry lives in its own `<DOMAIN>.D.<NNN>-<slug>.md` file under `02-domain-entities/` |
+
+A pack that switches to index+entity-card mode does NOT retroactively migrate existing single-file entries — old entries stay in 01B as-is; only new distinctions are written in the new mode going forward. Writing some new distinctions as 01B sections and others as files for the same pack after the switch re-creates a two-registry ID-collision risk (see `DP.SC.181` / `check-id-collision-delta.sh`, which blocks staged additions of new section headers to an already-existing `*-distinctions.md` file) — pick one mode per pack and hold it.
+
+Index table (ID, name, status, related items) is present in 01B in both modes.
 
 ---
 
