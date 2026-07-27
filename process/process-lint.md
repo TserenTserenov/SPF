@@ -34,6 +34,10 @@ File pattern: `/pack/<domain>/03-methods/*.md`
 | **L-M08** | Entry added to `02C-methods-index.md` |
 | **L-M09** | Map updated in `07-map/` |
 | **L-M10** | No didactic language (see [Universal Bans](#universal-bans)) |
+| **L-M11** | Forces section filled — ≥1 named tension, not a placeholder (**Added — new cards only**) |
+| **L-M12** | Bias-Annotation section filled — ≥1 named distortion + direction, not a placeholder (**Added — new cards only**) |
+
+> **Scope of L-M11/L-M12 (WP-448 Ф12, decision Б, 2026-07-27):** these two checks apply only to a method card newly **added** in this change — not to a pre-existing card being merely modified (typo fix, cross-reference update, etc.). The backlog of pre-2026-07-27 cards lacking Forces/Bias-Annotation is migrated separately under WP-448 Ф12 batches; touching an old card for an unrelated edit must not force an ad-hoc migration.
 
 ### CT-2: Work Product Added/Modified
 
@@ -232,6 +236,8 @@ When reporting lint results (for AI agents or PR descriptions):
 - [x] L-M08: Index updated
 - [x] L-M09: Map updated
 - [x] L-M10: No didactic language
+- [x] L-M11: Forces filled (new card)
+- [x] L-M12: Bias-Annotation filled (new card)
 
 ### Universal Bans
 - [x] UB-1: No didactic language
@@ -264,6 +270,7 @@ These conditions BLOCK commit/merge. No exceptions.
 | **HG-6** | Didactic language detected | Rewrite |
 | **HG-7** | Scenario instead of method | Rewrite as method |
 | **HG-8** | SoTA without revision criterion | Add criterion |
+| **HG-9** | New method card added without filled Forces or Bias-Annotation (WP-448 Ф12, since 2026-07-27; does not apply to modifying a pre-existing card) | Add both sections before commit |
 
 ---
 

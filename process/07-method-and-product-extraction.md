@@ -76,10 +76,12 @@ Required sections:
 | YAML frontmatter | id, name, status, dates |
 | Definition | What the method is (not how to do it) |
 | Purpose | What function it serves |
+| Forces | Competing tensions this method balances (WP-448 Ф12, required since 2026-07-27) |
 | Inputs | What is required |
 | Outputs | What is produced (link to WP) |
 | Applicability | When to use, when not to use |
 | Related distinctions | Which distinctions structure this method |
+| Bias-Annotation | Systematic distortion risked when applying this method (WP-448 Ф12, required since 2026-07-27) |
 | Failure modes | Which failures relate to this method |
 | SoTA | Status and revision criterion |
 
@@ -206,10 +208,12 @@ Before committing a new method:
 
 - [ ] Definition describes what, not how
 - [ ] No numbered steps (not a scenario)
+- [ ] Forces filled (≥1 named tension, not a placeholder)
 - [ ] Inputs specified
 - [ ] Outputs specified (linked to WP)
 - [ ] Applicability boundaries stated
 - [ ] At least one related distinction linked
+- [ ] Bias-Annotation filled (≥1 named distortion + direction, not a placeholder)
 - [ ] Failure modes referenced
 - [ ] SoTA status with revision criterion
 - [ ] ID follows convention

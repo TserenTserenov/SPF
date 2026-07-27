@@ -2,7 +2,8 @@
 
 Copy this file to create a new method card. Replace all `_TBD_` and `DOMAIN.M.XXX` placeholders.
 
-> **2026-07-11 — ADDITIVE CHANGE:** added optional `Forces` and `Bias-Annotation` sections (WP-448 Ф9). Not breaking — both sections are optional; existing cards remain valid without them.
+> **2026-07-11 — ADDITIVE CHANGE:** added `Forces` and `Bias-Annotation` sections (WP-448 Ф9), initially optional.
+> **2026-07-27 — REQUIRED FOR NEW CARDS (WP-448 Ф12, decision Б):** both sections are now required content for any method card created from this point forward — not headers left as placeholder. This does not retroactively invalidate cards created before 2026-07-27; the backlog of pre-existing cards is migrated separately under WP-448 Ф12 batches, not by this template change.
 
 ---
 
@@ -42,7 +43,7 @@ _Why does this method exist? What problem does it address? What does it enable?_
 
 ### Forces
 
-_(Optional) What competing pressures does this method balance? Each force names a tension the method resolves or holds in check — not a step, not a distinction._
+_What competing pressures does this method balance? Each force names a tension the method resolves or holds in check — not a step, not a distinction._
 
 | Force | Tension |
 |-------|---------|
@@ -85,7 +86,7 @@ _What conceptual distinctions are essential to performing this method correctly?
 
 ### Bias-Annotation
 
-_(Optional) What systematic distortion does a practitioner risk when applying this method — and in which direction? Name the bias, not a generic warning._
+_What systematic distortion does a practitioner risk when applying this method — and in which direction? Name the bias, not a generic warning._
 
 | Bias | Direction of distortion |
 |------|--------------------------|
@@ -119,8 +120,10 @@ _What commonly goes wrong when this method is performed poorly?_
 
 - [ ] ID follows pattern `DOMAIN.M.NNN`
 - [ ] Definition is declarative (not "Step 1: ...")
+- [ ] Forces section filled (≥1 named tension, not a placeholder)
 - [ ] Outputs link to work product cards
 - [ ] Failure modes are listed
+- [ ] Bias-Annotation section filled (≥1 named distortion + direction, not a placeholder)
 - [ ] SoTA status and revision criterion specified
 - [ ] Added to `02C-methods-index.md`
 - [ ] Added to `07-map/`
