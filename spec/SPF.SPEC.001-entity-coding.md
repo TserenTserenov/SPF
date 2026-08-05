@@ -228,4 +228,93 @@ Codes are validated for:
 
 ---
 
+## NameCard Extension
+
+> Added 2026-08-05 (WP-474 Ф8.6c, design consensus 2026-07-17, pilot decision on
+> semantics 2026-08-05). Governs the durable **Plain/Tech name pair** for a
+> term, distinct from the entity **code** defined above — a code (`DP.M.001`)
+> is an immutable pointer; a NameCard governs the human-facing *name* attached
+> to that pointer, which can legitimately be revisited without touching the
+> code.
+
+### Why a separate mechanism
+
+An entity's code (`CONTEXT.TYPE.NNN`) never changes once assigned — that stability is
+the point. But the **name** a term is known by (`plain` for a general reader,
+`tech` for precise cross-reference) is a naming decision with its own
+candidates, rejected alternatives and rationale — the kind of decision that,
+left undocumented, gets silently re-litigated by the next author who wasn't
+there for the first one. NameCard makes that decision durable and inspectable
+without freezing the code itself.
+
+### Trigger — not a `status:` value
+
+Earlier drafts of this design assumed a `status: public` value would gate the
+requirement. Live inventory (2026-07-24, 2960+ Pack files) found `public`
+appears **zero times** as an actual `status:` value anywhere — the real values
+in use are `active`, `draft`, and others unrelated to name durability. Gating
+on a non-existent value would have made the gate permanently inert.
+
+**Correct trigger: the act of creating a NameCard is itself the "this name is
+now public-grade" declaration** — not a side effect of any existing `status:`
+value, and not automatically inferred from `active`. An author decides a term
+has reached durable, cross-referenced naming (used by other Packs, cited by ID
+outside this Pack, or the author simply wants it locked) and *at that point*
+creates the NameCard. Until that decision is made, a term can carry any
+`status:` value (including `active`) without a NameCard — there is no implicit
+backfill obligation for entities already `active` at the time this extension
+was added (thousands, across all Packs); NameCard coverage grows forward, one
+deliberate promotion at a time, not retroactively.
+
+### Level A — frontmatter block (per-entity, lightweight)
+
+Added to the entity file's YAML frontmatter alongside `id`/`name`/`status`:
+
+```yaml
+name_card:
+  governed_value_ref: <FPF value-type this name resolves against — not a row id by default>
+  bounded_context_ref: <context registry entry this name is scoped to>
+```
+
+Static reference fields — they point at where the name's authority lives, not
+the naming history itself (that's Level B).
+
+### Level B — per-entity history file
+
+`09-name-cards/<code>.yaml` (one file per entity that has a NameCard; empty
+directory at Pack scaffold, per-entity file created on first promotion):
+
+```yaml
+code: <CONTEXT.TYPE.NNN>              # same code as the entity file
+plain: <name for a general reader>
+tech: <name for precise cross-reference>
+candidate_set: []                     # names considered
+rejected_candidates: []               # [{name, reason}] — why each alternative lost
+selection_rationale: ""               # why the chosen pair, one paragraph
+lineage_entries: []                   # append-only: [{date, event, note}]
+```
+
+`lineage_entries` is append-only — a later rename adds an entry, it does not
+edit or remove prior ones (same provenance principle as `superseded-by` for
+DR-records, `SPF.SPEC.` design pattern reused here, not reinvented).
+
+### Both levels required together
+
+A NameCard is complete only with both Level A (frontmatter pointer) and
+Level B (history file) present. Level A without Level B is a dangling
+reference; Level B without Level A is an orphaned history nobody's frontmatter
+points to. `pack-creator` creates both together (see Pack process
+docs) — never one without the other.
+
+### Deferred (not in this extension)
+
+`LocalSenseRef`, `RefreshCondition`, `UnifiedTermRowRef` — named in the
+original design pass but out of scope until a live case needs them. Adding
+them speculatively would be exactly the kind of un-requested field growth
+this spec elsewhere warns against (see Code properties: no reuse, sequential,
+gaps permitted — the same minimalism applies to schema fields, not just
+codes).
+
+---
+
 *This document: `SPF.SPEC.001`*
