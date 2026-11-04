@@ -155,8 +155,8 @@ def generate_map(pack_dir: Path, domain: str) -> str:
 
         for e in sorted(by_kind[kind], key=lambda x: x["id"]):
             eid = e["id"]
-            name = e.get("name", "—")
-            summary = e.get("summary", "—")
+            name = _cell(e.get("name", "—"))
+            summary = _cell(e.get("summary", "—"))
             status = e.get("status", "—")
             lines.append(f"| {eid} | {name} | {summary} | {status} |")
 
@@ -176,8 +176,8 @@ def generate_map(pack_dir: Path, domain: str) -> str:
             lines.append(f"|----|------|---------|--------|")
             for e in sorted(extended[kind], key=lambda x: x["id"]):
                 eid = e["id"]
-                name = e.get("name", "—")
-                summary = e.get("summary", "—")
+                name = _cell(e.get("name", "—"))
+                summary = _cell(e.get("summary", "—"))
                 status = e.get("status", "—")
                 lines.append(f"| {eid} | {name} | {summary} | {status} |")
             lines.append("")
@@ -224,6 +224,15 @@ def generate_map(pack_dir: Path, domain: str) -> str:
     return "\n".join(lines)
 
 
+def _cell(value) -> str:
+    """Render a frontmatter value as one markdown table cell.
+
+    Folded YAML scalars (`summary: >`) end with a newline and may span lines;
+    written as-is they break the table row. Collapse whitespace and escape pipes.
+    """
+    return " ".join(str(value).split()).replace("|", "\\|")
+
+
 def generate_entity_index(pack_dir: Path) -> str:
     """Generate Entity Index table for manifest."""
     entities = []
@@ -245,9 +254,9 @@ def generate_entity_index(pack_dir: Path) -> str:
 
     for e in sorted(entities, key=lambda x: x["id"]):
         eid = e["id"]
-        name = e.get("name", "—")
+        name = _cell(e.get("name", "—"))
         kind = classify_kind(eid)
-        summary = e.get("summary", "—")
+        summary = _cell(e.get("summary", "—"))
         status = e.get("status", "—")
         lines.append(f"| {eid} | {name} | {kind} | {summary} | {status} |")
 
